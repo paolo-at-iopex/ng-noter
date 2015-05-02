@@ -1,0 +1,20 @@
+Functionality:
+ - 3rd party application not working:
+   - Advised Driver/Software/Firmware upgrade/Add-On
+   - Advised incompatibility
+   - Configured 3rd party application
+   - Configured 3rd party hardware
+   - Configured Netgear product
+   - Configured WNHDE111 to Auto/Bridge mode
+   - Out of Scope Request (Do not survey)
+   - Referred to 3rd party support
+ - 3rd party HW not working:
+   - Advised Driver/Software/Firmware upgrade/Add-On
+   - Advised incompatibility
+   - Configured 3rd party hardware
+   - Configured Netgear product
+   - Configured WNHDE111 to Auto/Bridge mode
+   - Out of Scope Request (Do not survey)
+   - Provided forgotten passphrase/network key
+   - Referred to 3rd party support
+   - Walked through installation

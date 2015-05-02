@@ -1,0 +1,433 @@
+<!doctype html>
+<html ng-app="puNetgearNoter">
+<head>
+	<title>Noter</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="stylesheet" href="css/bootstrap.css" />
+	<link rel="stylesheet" href="css/bootstrap-theme.css" />
+	<style>
+	[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {display: none !important;}
+
+	#wrapMe, #wrapMe2 {padding:10px;}
+	#myTab {margin-bottom:10px;}
+	table#visRems td,  table#visRems th {padding: 2px 0 6px !important;}
+
+	#form1 > .row {margin-bottom:10px;}
+	textarea {font-size:12px !important;margin-bottom:10px;}
+	.caseNote, .caseNote pre  {font-size:11px;}
+	.noteSnapshot {font-size:9px !important;}
+
+	</style>
+<!--
+Project: Noter for Netgear
+Author: Paolo Dominict Umali
+Email: paolo.umali@iopex.com
+-->
+</head>
+<body class="ng-cloak">
+
+<div id="wrapMe" class="container-fluid" ng-controller="MyCtrl">
+
+<div role="tabpanel" data-example-id="togglable-tabs">
+		<ul id="myTab" class="nav nav-tabs" role="tablist">
+			<li role="presentation" class="active"><a href="#note" id="note-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Note</a></li>
+			<!--<li role="presentation"><a href="#myts" id="myts-tab" role="tab" data-toggle="tab" aria-controls="myts" aria-expanded="true" title="Common Troubleshooting">TS</a></li>-->
+			<li role="presentation" class=""><a href="#notes" role="tab" id="notes-tab" data-toggle="tab" aria-controls="profile" aria-expanded="false">Notes({{notes.length}})</a></li>
+			<li role="presentation" class=""><a href="#links" role="tab" id="links-tab" data-toggle="tab" aria-controls="links" aria-expanded="false">Links</a></li>
+			<li role="presentation" class="dropdown">
+				<a href="#" id="myTabDrop1" class="dropdown-toggle" data-toggle="dropdown" aria-controls="myTabDrop1-contents" aria-expanded="false">More <span class="caret"></span></a>
+				<ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1" id="myTabDrop1-contents">
+					<li><a href="#myts" id="myts-tab" role="tab" data-toggle="tab" aria-controls="myts" title="Common Troubleshooting">TS</a></li>
+					<li><a href="#contacts" tabindex="-1" role="tab" id="dropdown1-tab" data-toggle="tab" aria-controls="contacts">Contacts</a></li>
+					<li><a href="#scripts" tabindex="-1" role="tab" id="dropdown2-tab" data-toggle="tab" aria-controls="scripts">Scripts</a></li>
+					<li style="display:"><a href="#json" tabindex="-1" role="tab" id="dropdown3-tab" data-toggle="tab" aria-controls="json">Import/Export</a></li>
+					<li><a href="#tags" tabindex="-1" role="tab" id="dropdown4-tab" data-toggle="tab" aria-controls="tags">Tags</a></li>
+				</ul>
+			</li>
+		</ul>
+		<div id="myTabContent" class="tab-content">
+			<div role="tabpanel" class="tab-pane fade active in" id="note" aria-labelledby="note-tab">
+
+				<form id="form1">
+					<div class="row">
+						<!-- %name -->
+						<div class="col-xs-8">
+							<div class="input-group" ng-class="{'has-success':note.name, 'has-error':!note.name}">
+								<span class="input-group-addon" title="{{ph.name.title}}" data-toggle="tooltip">{{ph.name.letter}}</span>
+								<input type="text" class="form-control input-sm" placeholder="{{ph.name.text}}" ng-model="note.name" ACCESSKEY="{{ph.name.letter}}">
+							</div>
+						</div><!--/.col-xs-8-->
+						<!-- %callbackNo -->
+						<div class="col-xs-4">
+							<div class="input-group" ng-class="{'has-success':note.callbackNo, 'has-error':!note.callbackNo}">
+								<span class="input-group-addon" title="{{ph.callbackNo.title}}" data-toggle="tooltip">{{ph.callbackNo.letter}}</span>
+								<input type="text" class="form-control input-sm" placeholder="{{ph.callbackNo.text}}" ng-model="note.callbackNo" ACCESSKEY="{{ph.callbackNo.letter}}">
+							</div>
+						</div><!--/.col-xs-4-->
+					</div><!--/.row-->
+
+					<div class="row">
+						<!-- %caseNo -->
+						<div class="col-xs-3">
+							<div class="input-group" ng-class="{'has-success':note.caseNo, 'has-error':!note.caseNo}">
+								<span class="input-group-addon" title="{{ph.caseNo.title}}" data-toggle="tooltip">{{ph.caseNo.letter}}</span>
+								<input type="text" class="form-control input-sm" placeholder="{{ph.caseNo.text}}" ng-model="note.caseNo" ACCESSKEY="{{ph.caseNo.letter}}">
+							</div>
+						</div><!--/.col-xs-3-->
+						<!-- %email -->
+						<div class="col-xs-5">
+							<div class="input-group">
+								<span class="input-group-addon" title="{{ph.email.title}}" data-toggle="tooltip">{{ph.email.letter}}</span>
+								<input type="text" class="form-control input-sm" placeholder="{{ph.email.text}}" ng-model="note.email" ACCESSKEY="{{ph.email.letter}}">
+							</div>
+						</div><!--/.col-xs-5-->
+						<!-- %warranty -->
+						<div class="col-xs-4">
+							<div class="input-group" ng-class="{'has-success':note.warranty, 'has-error':!note.warranty}">
+								<span class="input-group-addon" title="{{ph.warranty.title}}" data-toggle="tooltip">{{ph.warranty.letter}}</span>
+								<input type="text" class="form-control input-sm" placeholder="{{ph.warranty.text}}" ng-model="note.warranty" ACCESSKEY="{{ph.warranty.letter}}">
+							</div>
+						</div><!--/.col-xs-4-->
+					</div><!--/.row-->
+
+					<div class="row">
+						<!-- %serial -->
+						<div class="col-xs-4">
+							<div class="input-group" ng-class="{'has-success':note.serial, 'has-error':!note.serial}">
+								<span class="input-group-addon" title="{{ph.serial.title}}" data-toggle="tooltip">{{ph.serial.letter}}</span>
+								<input type="text" class="form-control input-sm" placeholder="{{ph.serial.text}}" ng-model="note.serial" ACCESSKEY="{{ph.serial.letter}}">
+							</div>
+						</div><!--/.col-xs-4-->
+						<!-- %deviceName -->
+						<div class="col-xs-4">
+							<div class="input-group">
+								<span class="input-group-addon" title="{{ph.deviceName.title}}" data-toggle="tooltip">{{ph.deviceName.letter}}</span>
+								<input type="text" class="form-control input-sm" placeholder="{{ph.deviceName.text}}" ng-model="note.deviceName" ACCESSKEY="{{ph.deviceName.letter}}">
+								<span class="input-group-btn"><a href="http://support.netgear.com/product/{{note.deviceName}}" class="btn btn-sm btn-default" ng-class="{disabled: !note.deviceName}" target="myDevicePage" Title="View Netgear product support page">></a></span>
+							</div>
+						</div><!--/.col-xs-4-->
+						<!-- %isp -->
+						<div class="col-xs-4">
+							<div class="input-group">
+								<span class="input-group-addon" title="{{ph.isp.title}}" data-toggle="tooltip">{{ph.isp.letter}}</span>
+								<input type="text" class="form-control input-sm" placeholder="{{ph.isp.text}}" ng-model="note.isp" ACCESSKEY="{{ph.isp.letter}}">
+							</div>
+						</div><!--/.col-xs-4-->
+					</div><!--/.row-->
+
+					<div class="row">
+						<div class="col-xs-2">
+							<table class="table tabled-condensed table-striped" id="visRems">
+								<tbody>
+									<tr><td><label class="label label-default" ng-class="{'label-success':note.newProduct}" title="{{ph.newProduct.title}}"><input type="checkbox" ng-model="note.newProduct">{{ph.newProduct.text}}</label></td></tr>
+									<tr><td><label class="label label-default" ng-class="{'label-success':note.ispTech}" title="{{ph.ispTech.title}}"><input type="checkbox" ng-model="note.ispTech">{{ph.ispTech.text}}</label></td></tr>
+									
+									<tr><td><label class="label" ng-class="{'label-danger':!note.kb, 'label-success':note.kb}" title="{{ph.kb.title}}"><input type="checkbox" ng-model="note.kb"> KB?</label></td></tr>
+									<tr><td><label class="label" ng-class="{'label-danger':!note.gearhead, 'label-success':note.gearhead}" title="{{ph.gearhead.title}}"><input type="checkbox" ng-model="note.gearhead">{{ph.gearhead.text}}</label></td></tr>
+									<tr><td><label class="label" ng-class="{'label-danger':!note.survey, 'label-success':note.survey}" title="{{ph.survey.title}}"><input type="checkbox" ng-model="note.survey">{{ph.survey.text}}</label></td></tr>
+									<tr><td><label class="label" ng-class="{'label-danger':!note.resolved, 'label-success':note.resolved}" title="{{ph.resolved.title}}"><input type="checkbox" ng-model="note.resolved">{{ph.resolved.text}}</label></td></tr>
+								</tbody>
+							</table>
+						</div><!--/.col-xs-2-->
+						<div class="col-xs-10">
+
+							<div class="row" ng-show="note.newProduct" style="margin-bottom:10px">
+								<!-- %purchaseDate -->
+								<div class="col-xs-6">
+									<div class="input-group" ng-class="{'has-success':note.purchaseDate, 'has-error':!note.purchaseDate}">
+										<span class="input-group-addon" title="{{ph.purchaseDate.title}}" data-toggle="tooltip">{{ph.purchaseDate.letter}}</span>
+										<input class="form-control input-sm" type="text" placeholder="{{ph.purchaseDate.text}}" title="{{ph.purchaseDate.title}}" ng-model="note.purchaseDate"/>
+									</div>
+								</div><!--/.col-xs-6-->
+								<!-- %store -->
+								<div class="col-xs-6">
+									<div class="input-group" ng-class="{'has-success':note.store, 'has-error':!note.store}">
+										<span class="input-group-addon" title="{{ph.store.title}}" data-toggle="tooltip">{{ph.store.letter}}</span>
+										<input class="form-control input-sm" type="text" placeholder="{{ph.store.text}}" title="{{ph.store.title}}" ng-model="note.store"/>
+									</div>
+								</div><!--/.col-xs-6-->
+							</div><!--/.row-->
+
+							<div class="row" ng-show="note.ispTech" style="margin-bottom:10px">
+								<!-- %techName -->
+								<div class="col-xs-8">
+									<div class="input-group" ng-class="{'has-success':note.techName, 'has-error':!note.techName}">
+										<span class="input-group-addon" title="{{ph.techName.title}}" data-toggle="tooltip">{{ph.techName.letter}}</span>
+										<input class="form-control input-sm" type="text" placeholder="{{ph.techName.text}}" title="{{ph.techName.title}}" ng-model="note.techName"/>
+									</div>
+								</div><!--/.col-xs-8-->
+								<!-- %techID -->
+								<div class="col-xs-4">
+									<div class="input-group" ng-class="{'has-success':note.techID, 'has-error':!note.techID}">
+										<span class="input-group-addon" title="{{ph.techID.title}}" data-toggle="tooltip">{{ph.techID.letter}}</span>
+										<input class="form-control input-sm" type="text" placeholder="{{ph.techID.text}}" title="{{ph.techID.title}}" ng-model="note.techID"/>
+									</div>
+								</div><!--/.col-xs-4-->
+							</div><!--/.row-->
+
+							<!-- Customer's Inquiry -->
+							<textarea class="form-control" rows="2" ng-model="note.inquiry" placeholder="Customer's Inquiry" title="Customer's Inquiry"></textarea>
+							<!-- Technical History and Information -->
+							<textarea class="form-control" rows="2" ng-model="note.history" placeholder="Technical History and Information" title="Technical History and Information"></textarea>
+							<!-- Troubleshooting Details -->
+							<textarea class="form-control" rows="12" ng-model="note.ts" placeholder="Troubleshooting Details"></textarea>
+							<!-- Resolution Summary -->
+							<textarea class="form-control" rows="1" ng-model="note.resoSum" placeholder="Resolution Summary"></textarea>
+						</div>
+					</div><!-- /.row -->
+					
+					<div class="well well-sm">
+						<button class="btn btn-sm btn-primary" ng-click="log(note)" ng-show="!note.timestamp" ng-class="{disabled: isNoteDefault()}">Log</button>
+						<button class="btn btn-sm btn-primary" ng-click="save()" ng-show="note.timestamp">Save</button>
+						<button class="btn btn-sm btn-danger pull-right" ng-click="clearNote()" ng-show="!isNoteDefault()">Reset</button>
+					</div>
+				</form>
+				<hr>
+<!--start note-->
+<div class="caseNote" id="caseNote" contenteditable="true">
+Caller's Information<br>
+====================<br>
+Name: {{note.name}} <br>
+Tel No: {{note.callbackNo}} <br>
+{{note.email?'Email Address: '+note.email:''}}<br ng-show="note.email">
+Case #: {{note.caseNo}} <br>
+{{note.zip?'Zip: '+note.zip:''}}<br ng-show="note.zip">
+
+{{note.isp?'ISP: '+note.isp:''}}<br ng-show="note.isp">
+{{(note.techName && note.ispTech)?'Technician Name: '+note.techName:''}}<br ng-show="note.techName && note.ispTech">
+{{(note.techID && note.ispTech)?'Tech ID: '+note.techID:''}}<br ng-show="note.techID && note.ispTech">
+
+{{note.serial?'Serial Number: '+note.serial:''}}<br ng-show="note.serial">
+{{note.deviceName?'Device Name: '+note.deviceName:''}}<br ng-show="note.deviceName">
+{{(note.purchaseDate && note.newProduct)?'Purchase Date: '+note.purchaseDate:''}}<br ng-show="note.purchaseDate && note.newProduct">
+{{(note.store && note.newProduct)?'Store: '+note.store:''}}<br ng-show="note.store && note.newProduct">
+<br>
+Customer's Inquiry<br>
+====================<br>
+<pre>{{note.inquiry}}</pre>
+<br>
+Technical History and Information<br>
+====================<br>
+{{note.warranty?'Warranty: '+note.warranty:''}}<br ng-show="note.warranty">
+<pre>{{note.history}}</pre>
+<br>
+Troubleshooting Details<br>
+====================<br>
+<pre>{{note.ts}}</pre>
+<br>
+Resolution Summary<br>
+====================<br>
+<pre>{{note.resoSum}}</pre>
+<br>
+Issue Resolved: {{note.resolved?'Yes':'No'}}<br>
+Informed about the KB/NETGEAR online support: {{note.kb?'Yes':'No'}}<br>
+Informed about GH/Soft Upsell: {{note.gearhead?'Yes':'No'}}<br>
+Survey: {{note.survey?'Yes':'No'}}<br>
+</div>
+<!--end note-->
+
+			</div><!-- end tab content 1-->
+<!-- myts tab -->
+			<div role="tabpanel" class="tab-pane fade" id="myts" aria-labelledby="myts-tab" ng-controller="MytsCtrl">
+				<!-- Single button -->
+				<div class="btn-group">
+					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+						{{chosenTS.name || defaultTs}} <span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" role="menu">
+						<li ng-repeat="tsEntry in tsObjsArray"><a href="#" ng-click="choseATs(tsEntry)">{{tsEntry.name}}</a></li>
+					</ul>
+				</div>
+				<hr>
+
+				<!-- table for steps -->
+				<table class="table table-bordered table-condensed">
+					<thead>
+						<tr>
+							<th>Click on steps done</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="step in chosenTS.steps" ng-controller="stepDoneCtrl" ng-class="{success: step.done}">
+							<td><label><input type="checkbox" ng-click="toggleDone(step)" ng-model="done" ng-init="done=step.done"> {{step.text}}</label></td>
+						</tr>
+					</tbody>
+				</table>
+
+				<!-- mini notes -->
+				<h4>Subnotes</h4>
+				<div class="well well-sm noteSnapshot" contenteditable="true">
+				<span ng-repeat="step in chosenTS.steps" style="display:block" ng-show="step.done">- {{step.text}}</span>
+				</div>
+			</div><!-- /#myts -->
+
+			<div role="tabpanel" class="tab-pane fade" id="notes" aria-labelledby="notes-tab">
+					<h3>Snapshot</h3>
+					<div class="well well-sm noteSnapshot" contenteditable="true">
+						Case ID: {{note.caseNo}} <br>
+						Product Model: {{note.deviceName}} <br>
+						Warranty: {{note.warranty}} <br>
+						Issue: {{note.inquiry}} <br><br>
+						Troubleshooting steps done:<br>
+						<pre ng-show="note.ts">{{note.ts}}</pre>
+					</div>
+					<hr>
+					
+					<h3  ng-init="salesReport=false" ng-click="salesReport = !salesReport">Reports</h3>
+					<ul class="list-unstyled" ng-show="salesReport">
+						<li ng-repeat="note in notes">{{note.caseNo}} - {{note.noSaleReason}}</li>
+					</ul>
+					<hr>
+
+					<h3>Full Notes</h3>
+
+					<div class="panel panel-default" ng-repeat="note in notes | orderBy:'-timestamp'" style="margin-bottom:0">
+						<div class="panel-heading" ng-init="viewable=false"ng-dblclick="viewable=!viewable" title="Double click to toggle full note view" style="cursor:pointer">
+							#{{notes.length - $index}} 
+							<span class="badge" ng-click="edit(note)" style="cursor:pointer" title="Click to Edit Note #{{notes.length - $index}}, Case#{{note.caseNo}}, {{note.timestamp}}">Case#{{note.caseNo}}</span>
+							<span>{{note.inquiry}}</span>
+							<span class="label label-default">SW: {{note.warranty}}</span>&nbsp;<span class="label label-{{note.resolved?'success':'danger'}}" title="Resolved?">R:{{note.resolved?'Y':'N'}}</span>
+						</div>
+						<div class="panel-body" ng-show="viewable">
+<textarea rows="2" class="form-control" ng-model="note.noSaleReason" placeholder="No Sale Reason" ng-show="salesReport"></textarea>
+<!--start note-->
+<div class="caseNote" contenteditable="true">
+Caller's Information<br>
+====================<br>
+Name: {{note.name}} <br>
+Tel No: {{note.callbackNo}} <br>
+{{note.email?'Email Address: '+note.email:''}}<br ng-show="note.email">
+Case #: {{note.caseNo}} <br>
+{{note.zip?'Zip: '+note.zip:''}}<br ng-show="note.zip">
+
+{{note.isp?'ISP: '+note.isp:''}}<br ng-show="note.isp">
+{{(note.techName && note.ispTech)?'Technician Name: '+note.techName:''}}<br ng-show="note.techName && note.ispTech">
+{{(note.techID && note.ispTech)?'Tech ID: '+note.techID:''}}<br ng-show="note.techID && note.ispTech">
+
+{{note.serial?'Serial Number: '+note.serial:''}}<br ng-show="note.serial">
+{{note.deviceName?'Device Name: '+note.deviceName:''}}<br ng-show="note.deviceName">
+{{(note.purchaseDate && note.newProduct)?'Purchase Date: '+note.purchaseDate:''}}<br ng-show="note.purchaseDate && note.newProduct">
+{{(note.store && note.newProduct)?'Store: '+note.store:''}}<br ng-show="note.store && note.newProduct">
+<br>
+Customer's Inquiry<br>
+====================<br>
+<pre>{{note.inquiry}}</pre>
+<br>
+Technical History and Information<br>
+====================<br>
+{{note.warranty?'Warranty: '+note.warranty:''}}<br ng-show="note.warranty">
+<pre>{{note.history}}</pre>
+<br>
+Troubleshooting Details<br>
+====================<br>
+<pre>{{note.ts}}</pre>
+<br>
+Resolution Summary<br>
+====================<br>
+<pre>{{note.resoSum}}</pre>
+<br>
+Issue Resolved: {{note.resolved?'Yes':'No'}}<br>
+Informed about the KB/NETGEAR online support: {{note.kb?'Yes':'No'}}<br>
+Informed about GH/Soft Upsell: {{note.gearhead?'Yes':'No'}}<br>
+Survey: {{note.survey?'Yes':'No'}}<br>
+</div>
+<!--end note-->
+						</div>
+					</div>
+
+
+			</div><!-- end tab content 2-->
+
+			<div role="tabpanel" class="tab-pane fade in" id="links" aria-labelledby="links-tab">
+				<ul class="list-unstyled">
+					<li ng-repeat="link in links"><a href="{{link.link}}" target="{{link.target}}" style="text-decoration:underline">{{link.title}}</a></li>
+				</ul>
+				<hr>
+				<table class="table table-bordered tabled-condensed" ng-controller="FilterKbCtrl">
+					<thead>
+						<th>
+							<div class="input-group">
+								<span class="input-group-addon" id="filter-kbs">Search Common KBs</span>
+								<input type="text" class="form-control" aria-describedby="filter-kbs" ng-model="filterKb">
+								<span class="input-group-btn"><button class="btn btn-default" type="button" ng-click="clearFilterKb()">Clear</button></span>
+							</div>
+							</div>
+						</th>
+					</thead>
+					<tbody>
+						<tr ng-repeat="kb in kbs | filter:filterKb">
+							<td><a href="http://netgear-us1.custhelp.com/app/answers/detail/a_id/{{kb.number}}/kw/qa" target="myLinksWindows">{{kb.title}} / {{kb.number}}</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div><!-- end tab content 3-->
+
+			<div role="tabpanel" class="tab-pane fade in" id="json" aria-labelledby="json-tab">
+				<div class="col-xs-12">
+					<textarea class="form-control" ng-model="jsonStr" placeholder="Paste your old JSON array/data here"></textarea><br>
+					<button class="btn btn-primary" ng-click="jsonToNotes(jsonStr)">Import JSON array</button>
+					<hr>
+					<h4>Current JSON array</h4>
+					<p class="text-danger">Save today's notes by copying the JSON array below. Use importer above to reload data.</p>
+{{ notes | json }}
+					<hr>
+					<button class="btn" ng-class="{'btn-danger': allN==false, 'btn-success': allN==true}" ng-click="trackAllNotesToggle()">Track All Notes</button>
+					<button class="btn btn-danger pull-right" ng-click="clearNotes()">Clear All Notes</button>
+					<button class="btn btn-primary" ng-click="notes=notess">Load Backup</button>
+					<hr>
+					<div contenteditable="true">{{ notess | json }}</div>
+				</div>
+			</div><!-- end tab content 4-->
+
+			<div role="tabpanel" class="tab-pane fade in" id="contacts" aria-labelledby="info-tab">
+				<table class="table table-bordered tabled-condensed table-striped">
+					<thead><tr><th colspan="2">Contacts</th></tr></thead>
+					<tbody><tr ng-repeat="contact in contacts"><td>{{contact.name}}</td><td>{{contact.number}}</td></tr></tbody>
+				</table>
+			</div><!-- end tab content 6-->
+
+			<div role="tabpanel" class="tab-pane fade in" id="scripts" aria-labelledby="info-tab">
+				<table class="table table-bordered tabled-condensed table-striped">
+					<thead><tr><th colspan="2">Scripts</th></tr></thead>
+					<tbody><tr ng-repeat="script in scripts"><td style="width:20%">{{script.name}}</td><td>{{script.text}}</td></tr></tbody>
+				</table>
+			</div><!-- end tab content 7-->
+
+			<div role="tabpanel" class="tab-pane fade in" id="tags" aria-labelledby="tags-tab">
+				<h4>Tags</h4>
+				<pre>
+Functionality:
+ - 3rd party application not working:
+   - Advised Driver/Software/Firmware upgrade/Add-On
+   - Advised incompatibility
+   - Configured 3rd party application
+   - Configured 3rd party hardware
+   - Configured Netgear product
+   - Configured WNHDE111 to Auto/Bridge mode
+   - Out of Scope Request (Do not survey)
+   - Referred to 3rd party support
+ - 3rd party HW not working:
+   - Advised Driver/Software/Firmware upgrade/Add-On
+   - Advised incompatibility
+   - Configured 3rd party hardware
+   - Configured Netgear product
+   - Configured WNHDE111 to Auto/Bridge mode
+   - Out of Scope Request (Do not survey)
+   - Provided forgotten passphrase/network key
+   - Referred to 3rd party support
+   - Walked through installation
+				</pre>
+			</div><!-- end tab content 8-->
+
+		</div>
+	</div>
+</div><!-- /#wrapMe -->
+
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/angular.js"></script>
+<script src="js/angular-cookies.js"></script>
+<script src="js/ng.js"></script>
+
+</body>
+</html>

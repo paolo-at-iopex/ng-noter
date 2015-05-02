@@ -1,0 +1,12 @@
+- upgraded bootstrap to 3.3.4
+- upgraded angular to 1.4 rc1
+- saves current note to cookie every 20sec, expires 60*9 min
+- added reset
+
+-----------
+Custom Bootstrap
+Success! Your configuration has been saved to https://gist.github.com/e3092162cca0dc956dd8 and can be revisited here at http://getbootstrap.com/customize/?id=e3092162cca0dc956dd8 for further customization.
+
+Project: Noter for Netgear
+Author: Paolo Dominict Umali
+Email: paolo.umali@iopex.com
