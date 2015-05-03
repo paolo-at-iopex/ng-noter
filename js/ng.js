@@ -21,11 +21,12 @@ angular.module('puNetgearNoter', ['ngCookies'])
 	{"id":"store", "text": "Store", "letter": "*", "title": "Store"},
 	{"id":"inquiry", "text": "Customer's Inquiry", "letter": "*", "title": "The Expert should be able to accurately record customer's exact reason to contact NTGR support (from the customer's perspective)."},
 	{"id":"history", "text": "Technical History and Information", "letter": "*", "title": "- Prior to acquiring any information, the expert must ensure the customer is effectively educated about the device's Entitlement. In this section, the expert should not reenter information fields of which already exist in CTS. \n - If not available in the drop down, expert should accurately document the following: ISP, Modem manufacturer \n - Capture information on the following which is relevant ONLY for the T/S process: (i) Network setup/architecture, (ii) Summarize and document previous Trouble shooting and recommendation(s)"},
+	{"id":"resoSum", "text": "Resolution Summary", "letter": "*", "title": "Yes: Following are the qualifiers: \n - If the customer's issue has been resolved  \n - If the customer has been referred to ISP or 3rd party  \n - Customer opts not to choose for any Premium Plan and may go for online support/KB Articles or Forum  \n \n No:  Following are the qualifiers:\n If the customer disconnects the phone due to:\n - Technical glitch \n - Intentionally due to failure in issue resolution \n - Intentionally during presentation of Premium Plans \n"},
 
 	{"id":"newProduct", "text": "New?", "letter": "*", "title": "New product registration? If yes, get: Device serial, purchased when and where"},
 	{"id":"ispTech", "text": "Tech?", "letter": "*", "title": "If talking with ISP technician, get ISP, Technicians name and Tech ID"},
-	{"id":"kb", "text": "KB?", "letter": "*", "title": "Informed customer about knowledgebase and forum?"},
-	{"id":"survey", "text": "Survey?", "letter": "*", "title": "Advised survey?"},
+	{"id":"kb", "text": "KB?", "letter": "*", "title": "To avoid a second Call (Promote FCR) did the expert present support website in order to effectively inform the customer of the online support options? Such as KB articles (User manual, Instruction guide, Troubleshooting steps, etc.) as well as email support"},
+	{"id":"survey", "text": "Survey?", "letter": "*", "title": "The expert must inform the customer about the survey at the end of the call"},
 	{"id":"gearhead", "text": "GH?", "letter": "*", "title": "Pitched Gearhead? \n Active Hardware Warranty/Support Entitlement: \n ========= \n - <Customer Name>, your NETGEAR device comes with 90 days of Support Warranty and <one year/2 years/Limited Lifetime> of HW warranty from the date of purchase. \n \nActive Hardware Warranty/ Expired Support Entitlement \n ========= \n - <Customer name>, from the day you purchased this NETEGAR product, it was entitled to <one year/2 years/Limited Lifetime> of hardware warranty and 90 days of free technical support. You are beyond the 90 day support for your product. Your device is now <State the actual # of days (example: 180 days) > from the date of purchase. \n - Perform basic hardware check, offer free support options including email and pitch for GH services. \n \nExpired Hardware Warranty/ Expired Support Entitlement \n ========= \n - <Customer Name>, from the day you purchased this NETEGAR product, it was entitled to <one year/2 years/Limited Lifetime> of hardware warranty and 90 days of free technical support. You are currently <###>days beyond the 90 day free phone support. \n - Provide Free Support Options (excluding Email) and GearHead Plans \n"},
 	{"id":"resolved", "text": "Resolved?", "letter": "*", "title": "Problem resolved?"},
 ])
@@ -114,6 +115,12 @@ angular.module('puNetgearNoter', ['ngCookies'])
 	window.onbeforeunload = function() {
 		return "Are you sure you want to navigate away and lose your notes?";
 	}
+
+	// tooltips
+	$(function () {
+		$('[data-toggle="tooltip"]').tooltip({placement: 'bottom'})
+	})
+
 	// tabs
 	$('#myTab a').click(function (e) {
 		e.preventDefault()

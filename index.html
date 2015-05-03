@@ -166,13 +166,13 @@ Email: paolo.umali@iopex.com
 							</div><!--/.row-->
 
 							<!-- Customer's Inquiry -->
-							<textarea class="form-control" rows="2" ng-model="note.inquiry" placeholder="Customer's Inquiry" title="Customer's Inquiry"></textarea>
+							<textarea class="form-control" rows="2" ng-model="note.inquiry" placeholder="{{ph.inquiry.text}}" title="{{ph.inquiry.title}}"></textarea>
 							<!-- Technical History and Information -->
-							<textarea class="form-control" rows="2" ng-model="note.history" placeholder="Technical History and Information" title="Technical History and Information"></textarea>
+							<textarea class="form-control" rows="2" ng-model="note.history" placeholder="{{ph.history.text}}" title="{{ph.history.title}}"></textarea>
 							<!-- Troubleshooting Details -->
 							<textarea class="form-control" rows="12" ng-model="note.ts" placeholder="Troubleshooting Details"></textarea>
 							<!-- Resolution Summary -->
-							<textarea class="form-control" rows="1" ng-model="note.resoSum" placeholder="Resolution Summary"></textarea>
+							<textarea class="form-control" rows="1" ng-model="note.resoSum" placeholder="{{ph.resoSum.text}}" title="{{ph.resoSum.title}}"></textarea>
 						</div>
 					</div><!-- /.row -->
 					
@@ -185,8 +185,7 @@ Email: paolo.umali@iopex.com
 				<hr>
 <!--start note-->
 <div class="caseNote" id="caseNote" contenteditable="true">
-Caller's Information<br>
-====================<br>
+==================== Caller's Information ====================<br>
 Name: {{note.name}} <br>
 Tel No: {{note.callbackNo}} <br>
 {{note.email?'Email Address: '+note.email:''}}<br ng-show="note.email">
@@ -202,21 +201,18 @@ Case #: {{note.caseNo}} <br>
 {{(note.purchaseDate && note.newProduct)?'Purchase Date: '+note.purchaseDate:''}}<br ng-show="note.purchaseDate && note.newProduct">
 {{(note.store && note.newProduct)?'Store: '+note.store:''}}<br ng-show="note.store && note.newProduct">
 <br>
-Customer's Inquiry<br>
-====================<br>
+===================== Customer's Inquiry =====================<br>
 <pre>{{note.inquiry}}</pre>
 <br>
-Technical History and Information<br>
-====================<br>
+============== Technical History and Information =============<br>
 {{note.warranty?'Warranty: '+note.warranty:''}}<br ng-show="note.warranty">
 <pre>{{note.history}}</pre>
 <br>
-Troubleshooting Details<br>
-====================<br>
+================== Troubleshooting Details ===================<br>
 <pre>{{note.ts}}</pre>
 <br>
-Resolution Summary<br>
-====================<br>
+
+===================== Resolution Summary =====================<br>
 <pre>{{note.resoSum}}</pre>
 <br>
 Issue Resolved: {{note.resolved?'Yes':'No'}}<br>
@@ -292,8 +288,7 @@ Survey: {{note.survey?'Yes':'No'}}<br>
 <textarea rows="2" class="form-control" ng-model="note.noSaleReason" placeholder="No Sale Reason" ng-show="salesReport"></textarea>
 <!--start note-->
 <div class="caseNote" contenteditable="true">
-Caller's Information<br>
-====================<br>
+==================== Caller's Information ====================<br>
 Name: {{note.name}} <br>
 Tel No: {{note.callbackNo}} <br>
 {{note.email?'Email Address: '+note.email:''}}<br ng-show="note.email">
@@ -309,21 +304,18 @@ Case #: {{note.caseNo}} <br>
 {{(note.purchaseDate && note.newProduct)?'Purchase Date: '+note.purchaseDate:''}}<br ng-show="note.purchaseDate && note.newProduct">
 {{(note.store && note.newProduct)?'Store: '+note.store:''}}<br ng-show="note.store && note.newProduct">
 <br>
-Customer's Inquiry<br>
-====================<br>
+===================== Customer's Inquiry =====================<br>
 <pre>{{note.inquiry}}</pre>
 <br>
-Technical History and Information<br>
-====================<br>
+============== Technical History and Information =============<br>
 {{note.warranty?'Warranty: '+note.warranty:''}}<br ng-show="note.warranty">
 <pre>{{note.history}}</pre>
 <br>
-Troubleshooting Details<br>
-====================<br>
+================== Troubleshooting Details ===================<br>
 <pre>{{note.ts}}</pre>
 <br>
-Resolution Summary<br>
-====================<br>
+
+===================== Resolution Summary =====================<br>
 <pre>{{note.resoSum}}</pre>
 <br>
 Issue Resolved: {{note.resolved?'Yes':'No'}}<br>
