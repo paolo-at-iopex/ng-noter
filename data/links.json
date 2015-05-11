@@ -1,0 +1,14 @@
+[
+	{"title":"Loway","link":"http://voice.iopex.com/","target":"LowaySim"},
+	{"title":"Mail","link":"http://mail7.iopex.com","target":"MailSim"},
+	{"title":"Traktime","link":"http://traktime.iopex.com","target":"TrakSim"},
+	{"title":"Yapper Simulators","link":"https://yapper.netgear-support.com/productsimulators","target":"YapperSim"},
+	{"title":"Chasms","link":"http://chasms.com/","target":"ChasmsSim"},
+
+	{"target":"OtherSim", "title":"NETGEAR Customer Warranty","link":"http://www.netgear.com/about/warranty/"},
+	{"target":"OtherSim", "title":"Warranty Return Policy","link":"http://kb.netgear.com/app/answers/detail/a_id/1113/~/warranty-return-policy"},
+	{"target":"OtherSim", "title":"Standard Customer Survey (Regular Survey)","link":"https://my-stg1.netgear-support.com/myNETGEAR/Survey_Standard.asp?p=Customer%20Satisfaction%20Survey&s=24537C8B-9706-4697-AD5B-70C479E1F94C&ncc=&lng=ENG"},
+	{"target":"OtherSim", "title":"Customer Survey (Mini Survey)","link":"https://my-stg1.netgear-support.com/myNETGEAR/Survey_Mini.asp?p=Customer%20Satisfaction%20Survey&s=3BB293E7-C2C7-445E-9EB8-8F185917B612&ncc=&lng=ENG"},
+	{"target":"OtherSim", "title":"Customer Survey (Out of Scope Survey)","link":"https://my-stg1.netgear-support.com/myNETGEAR/Survey_OOS.asp?source=&s=89A91BB5-8A5A-417E-BC92-9CA15BC9AC08&lng=ENG"},
+	{"target":"OtherSim", "title":"Customer Survey (Premium Survey)","link":"https://my-stg1.netgear-support.com/myNETGEAR/Survey_Premium.asp?p=Customer%20Satisfaction%20Survey&s=3BB293E7-C2C7-445E-9EB8-8F185917B612&ncc=&lng=ENG"}
+]

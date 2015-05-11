@@ -1,0 +1,24 @@
+[
+	{"id":"name", "text":"Name", "letter": "N", "title": "Thank you for choosing NETGEAR. My name is <Expert's Name>; with expert ID <xxxx> To whom am I speaking with?"},
+	{"id":"callbackNo", "text": "Callback  #", "letter": "P", "title": "Thank you for <verifying/providing> your phone number. If our call gets disconnected, I will contact you on that number within 60 seconds."},
+	{"id":"caseNo", "text": "Case #", "letter": "C", "title": "Case #: If cx is calling for an existing one, pull it up, if not, create new case under product in question and advise the cx this reference number"},
+	{"id":"email", "text": "Email", "letter": "E", "title": "Email address"},
+	{"id":"warranty", "text": "Warranty Info", "letter": "W", "title": "Advise cx of device's warranty info, support entitlements."},
+	{"id":"serial", "text": "Serial", "letter": "S", "title": "Get device serial first to identify entitlement"},
+	{"id":"deviceName", "text": "Model #", "letter": "M", "title": "Model #"},
+	{"id":"isp", "text": "ISP", "letter": "I", "title": "ISP"},
+	{"id":"techName", "text": "Technician Name", "letter": "*", "title": "Tech's Name"},
+	{"id":"techID", "text": "Tech ID", "letter": "*", "title": "Tech ID"},
+	{"id":"purchaseDate", "text": "Purchase Date", "letter": "*", "title": "Purchase Date"},
+	{"id":"store", "text": "Store", "letter": "*", "title": "Store"},
+	{"id":"inquiry", "text": "Customer's Inquiry", "letter": "*", "title": "The Expert should be able to accurately record customer's exact reason to contact NTGR support (from the customer's perspective)."},
+	{"id":"history", "text": "Technical History and Information", "letter": "*", "title": "- Prior to acquiring any information, the expert must ensure the customer is effectively educated about the device's Entitlement. In this section, the expert should not reenter information fields of which already exist in CTS. \n - If not available in the drop down, expert should accurately document the following: ISP, Modem manufacturer \n - Capture information on the following which is relevant ONLY for the T/S process: (i) Network setup/architecture, (ii) Summarize and document previous Trouble shooting and recommendation(s)"},
+	{"id":"resoSum", "text": "Resolution Summary", "letter": "*", "title": "Yes: Following are the qualifiers: \n - If the customer's issue has been resolved  \n - If the customer has been referred to ISP or 3rd party  \n - Customer opts not to choose for any Premium Plan and may go for online support/KB Articles or Forum  \n \n No:  Following are the qualifiers:\n If the customer disconnects the phone due to:\n - Technical glitch \n - Intentionally due to failure in issue resolution \n - Intentionally during presentation of Premium Plans \n"},
+
+	{"id":"newProduct", "text": "New?", "letter": "*", "title": "New product registration? If yes, get: Device serial, purchased when and where"},
+	{"id":"ispTech", "text": "Tech?", "letter": "*", "title": "If talking with ISP technician, get ISP, Technicians name and Tech ID"},
+	{"id":"kb", "text": "KB?", "letter": "*", "title": "To avoid a second Call (Promote FCR) did the expert present support website in order to effectively inform the customer of the online support options? Such as KB articles (User manual, Instruction guide, Troubleshooting steps, etc.) as well as email support"},
+	{"id":"survey", "text": "Survey?", "letter": "*", "title": "The expert must inform the customer about the survey at the end of the call"},
+	{"id":"gearhead", "text": "GH?", "letter": "*", "title": "Pitched Gearhead? \n Active Hardware Warranty/Support Entitlement: \n ========= \n - <Customer Name>, your NETGEAR device comes with 90 days of Support Warranty and <one year/2 years/Limited Lifetime> of HW warranty from the date of purchase. \n \nActive Hardware Warranty/ Expired Support Entitlement \n ========= \n - <Customer name>, from the day you purchased this NETEGAR product, it was entitled to <one year/2 years/Limited Lifetime> of hardware warranty and 90 days of free technical support. You are beyond the 90 day support for your product. Your device is now <State the actual # of days (example: 180 days) > from the date of purchase. \n - Perform basic hardware check, offer free support options including email and pitch for GH services. \n \nExpired Hardware Warranty/ Expired Support Entitlement \n ========= \n - <Customer Name>, from the day you purchased this NETEGAR product, it was entitled to <one year/2 years/Limited Lifetime> of hardware warranty and 90 days of free technical support. You are currently <###>days beyond the 90 day free phone support. \n - Provide Free Support Options (excluding Email) and GearHead Plans \n"},
+	{"id":"resolved", "text": "Resolved?", "letter": "*", "title": "Problem resolved?"}
+]

@@ -1,0 +1,26 @@
+[{
+	"name":"Router setup for a cable modem","steps":[
+		"Bypassed router, getting online", 
+		"Physically connect router to modem",
+		"Reset Router",
+		"Tried auto setup wizard",
+		"Mac spoof done",
+		"Verified wifi working"
+	]}, {
+	"name":"TS2","steps":[
+		"Bypassed router, getting online", 
+		"Physically connect router to modem",
+		"Reset Router",
+		"Tried auto setup wizard",
+		"Mac spoof done",
+		"Verified wifi working"
+	]},{
+	"name":"TS3","steps":[
+		"Bypassed router, getting online", 
+		"Physically connect router to modem",
+		"Reset Router",
+		"Tried auto setup wizard",
+		"Mac spoof done",
+		"Verified wifi working"
+	]}
+]
