@@ -267,22 +267,18 @@ Survey: {{note.survey?'Yes':'No'}}<br>
 						Troubleshooting steps done:<br>
 						<pre ng-show="note.ts">{{note.ts}}</pre>
 					</div>
-					<hr>
-					
-					<h3  ng-init="salesReport=false" ng-click="salesReport = !salesReport">Reports</h3>
-					<ul class="list-unstyled" ng-show="salesReport">
-						<li ng-repeat="note in notes">{{note.caseNo}} - {{note.noSaleReason}}</li>
-					</ul>
+
 					<hr>
 
+					<button class="btn btn-sm btn-danger pull-right" ng-click="clearNotes()">Clear All Notes</button>
 					<h3>Full Notes</h3>
+
 
 					<div class="panel panel-default" ng-repeat="note in notes | orderBy:'-timestamp'" style="margin-bottom:0">
 						<div class="panel-heading" ng-init="viewable=false"ng-dblclick="viewable=!viewable" title="Double click to toggle full note view" style="cursor:pointer">
-							#{{notes.length - $index}} 
-							<span class="badge" ng-click="edit(note)" style="cursor:pointer" title="Click to Edit Note #{{notes.length - $index}}, Case#{{note.caseNo}}, {{note.timestamp}}">Case#{{note.caseNo}}</span>
-							<span>{{note.inquiry}}</span>
-							<span class="label label-default">SW: {{note.warranty}}</span>&nbsp;<span class="label label-{{note.resolved?'success':'danger'}}" title="Resolved?">R:{{note.resolved?'Y':'N'}}</span>
+							#{{notes.length - $index}}: <span>{{note.inquiry}}</span>
+							<span class="badge" ng-click="edit(note)" style="cursor:pointer" title="Click to Edit Note #{{notes.length - $index}}, Case#{{note.caseNo}}, {{note.timestamp}}">C#{{note.caseNo}}</span>
+							<span class="label label-default" title="{{note.warranty}}">SW</span>&nbsp;<span class="label label-{{note.resolved?'success':'danger'}}" title="Resolved?">R:{{note.resolved?'Y':'N'}}</span>
 						</div>
 						<div class="panel-body" ng-show="viewable">
 <textarea rows="2" class="form-control" ng-model="note.noSaleReason" placeholder="No Sale Reason" ng-show="salesReport"></textarea>
@@ -327,7 +323,13 @@ Survey: {{note.survey?'Yes':'No'}}<br>
 						</div>
 					</div>
 
-
+					<hr>
+					
+					<h3  ng-init="salesReport=false" ng-click="salesReport = !salesReport">Reports</h3>
+					<ul class="list-unstyled" ng-show="salesReport">
+						<li ng-repeat="note in notes">{{note.caseNo}} - {{note.noSaleReason}}</li>
+					</ul>
+					
 			</div><!-- end tab content 2-->
 
 			<div role="tabpanel" class="tab-pane fade in" id="links" aria-labelledby="links-tab">

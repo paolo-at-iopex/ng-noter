@@ -23,7 +23,7 @@ angular.module('puNetgearNoter', ['ngCookies'])
 
 	// tabs
 	$('#myTab a').click(function (e) {e.preventDefault();$(this).tab('show');})
-	
+
 })
 .run(function($rootScope, $http) {
 
@@ -117,6 +117,7 @@ angular.module('puNetgearNoter', ['ngCookies'])
 
 	$scope.clearNotes = function(){
 		$scope.notes = [];
+		$scope.reset();
 		$cookieStore.put('notes', []);
 	}
 
