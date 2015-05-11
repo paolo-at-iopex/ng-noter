@@ -37,7 +37,7 @@ angular.module('puNetgearNoter', ['ngCookies'])
 	{"name":"AT&T Aircard", "number":"1-800-331-0500"},
 	{"name":"PRO-SAFE (NAS/CBU)", "number":"1-855-PROSAFE (776-7233)"},
 	{"name":"Arlo", "number":"1-408-638-3750"},
-	{"name":"Viewzone Backdoor", "number":"1-714-886-1665"},
+	{"name":"Vuezone Backdoor", "number":"1-714-886-1665"},
 ])
 .value('myScripts', [
 	{"name":"Open", "text":"Thank you for choosing NETGEAR.  My name is <Expert's Name>; with expert ID <xxxx> may I ask whom am I speaking with?"},
