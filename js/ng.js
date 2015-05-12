@@ -118,6 +118,7 @@ angular.module('puNetgearNoter', ['ngCookies'])
 	$scope.clearNotes = function(){
 		$scope.notes = [];
 		$scope.reset();
+		$cookieStore.put('note', false);
 		$cookieStore.put('notes', []);
 	}
 

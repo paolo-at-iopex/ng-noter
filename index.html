@@ -1,8 +1,11 @@
 <!doctype html>
 <html ng-app="puNetgearNoter">
 <head>
-	<title>Noter</title>
+	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="favicon.ico">
+	<title>Noter</title>
 	<link rel="stylesheet" href="css/bootstrap.css" />
 	<link rel="stylesheet" href="css/bootstrap-theme.css" />
 	<style>
@@ -329,7 +332,7 @@ Survey: {{note.survey?'Yes':'No'}}<br>
 					<ul class="list-unstyled" ng-show="salesReport">
 						<li ng-repeat="note in notes">{{note.caseNo}} - {{note.noSaleReason}}</li>
 					</ul>
-					
+
 			</div><!-- end tab content 2-->
 
 			<div role="tabpanel" class="tab-pane fade in" id="links" aria-labelledby="links-tab">
