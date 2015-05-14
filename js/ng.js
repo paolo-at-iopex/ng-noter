@@ -1,16 +1,19 @@
 
 var debug = false;
 
-angular.module('puNetgearNoter', ['ngCookies'])
+angular.module('puNetgearNoter', ['ngCookies', 'ngClipboard'])
 
 .constant('cookieExpiration', 60*9)//expiration time of cookies, in minutes(60*9)
 .constant('cookieUpdate', 20)//update time of cookies, in seconds(20)
-
 
 .config(function($cookiesProvider, cookieExpiration){
 	var now = new Date();
 	console.log('Cookie Expiration:', $cookiesProvider.defaults.expires = new Date(now.getTime() + cookieExpiration*60000));//cookie expires after cookieExpiration minutes
 })
+
+.config(['ngClipProvider', function(ngClipProvider) {
+	ngClipProvider.setPath("js/ZeroClipboard.swf");
+}])
 
 .run(function($window){
 	// safe unload
@@ -84,7 +87,6 @@ angular.module('puNetgearNoter', ['ngCookies'])
 	};
 
 	$scope.noteMaster = {
-		verified:false,
 		ispTech:false,
 		newProduct:false,
 		resolved:false,
@@ -121,6 +123,52 @@ angular.module('puNetgearNoter', ['ngCookies'])
 		$cookieStore.put('note', false);
 		$cookieStore.put('notes', []);
 	}
+
+
+	$scope.caseNoteToClipboard = function(note){
+		return $scope.caseNote = 
+				"==================== Caller\'s Information ====================\n" +
+				(note.name?"Name: "+note.name+"\n":'')+
+				(note.callbackNo?"Tel No: "+note.callbackNo+"\n":'')+
+				(note.email?"Email Address: "+note.email+"\n":'')+
+				(note.caseNo?"Case #: "+note.caseNo+"\n":'')+
+
+				(note.isp?"ISP: "+note.isp+"\n":'')+
+				(note.techName && note.ispTech?"Technician Name: "+note.techName+"\n":'')+
+				(note.techID && note.ispTech?"Tech ID: "+note.techID+"\n":'')+
+
+				(note.serial?"Serial Number: "+note.serial+"\n":'')+
+				(note.deviceName?"Device Name: "+note.deviceName+"\n":'')+
+				(note.purchaseDate && note.newProduct?'Purchase Date: '+note.purchaseDate+"\n":'')+
+				(note.store && note.newProduct?'Store: '+note.store+"\n":'')+
+				"\n"+
+				"===================== Customer's Inquiry =====================\n" +
+				note.inquiry+"\n\n"+
+				"============== Technical History and Information =============\n" +
+				(note.warranty?"Warranty: "+note.warranty+"\n":'') +
+				(note.history)+"\n\n"+
+				"================== Troubleshooting Details ===================\n" +
+				(note.ts)+"\n\n"+
+				"===================== Resolution Summary =====================\n" +
+				(note.resoSum)+"\n\n"+
+				"Issue Resolved: "+(note.resolved?'Yes':'No')+"\n"+
+				"Informed about the KB/NETGEAR online support: "+(note.kb?'Yes':'No')+"\n"+
+				"Informed about GH/Soft Upsell: "+(note.gearhead?'Yes':'No')+"\n"+
+				"Survey: "+(note.survey?'Yes':'No');
+
+	}
+
+	$scope.snapshotToClipboard = function(note){
+		return $scope.snapshot = 
+				(note.caseNo?"Case ID: "+note.caseNo+"\n":'')+
+				(note.deviceName?"Product Model: "+note.deviceName+"\n":'')+
+				(note.warranty?"Warranty: "+note.warranty+"\n":'') +
+				"Issue: "+note.inquiry+"\n\n"+
+
+				"Troubleshooting steps done:\n"+
+				(note.ts)+"\n\n"
+	}
+
 
 	$scope.log = function(note){
 		note.timestamp = new Date().toLocaleString();
@@ -169,6 +217,8 @@ angular.module('puNetgearNoter', ['ngCookies'])
 	}
 	else
 		$scope.reset();
+
+
 
 })
 

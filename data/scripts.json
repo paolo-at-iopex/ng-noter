@@ -1,5 +1,7 @@
 [
 	{"name":"Open", "text":"Thank you for choosing NETGEAR.  My name is <Expert's Name>; with expert ID <xxxx> may I ask whom am I speaking with?"},
+	{"name":"INW", "text":"<Customer Name>, as of today, our records indicate that your have not advantage of our premium support services. I will be more than happy to tell you about it, would that be ok?"},
+	{"name":"OOW", "text":"<CUSTOMER NAME>, Just so you know, you can get this information online by visiting the NETGEAR knowledge base at support.netgear.com or joining our online community forum. Most importantly, we can offer you support RIGHT NOW through one of our premium support plans, I will be more than happy to tell you about it, would that be ok?"},
 	{"name":"Callback", "text":"Kindly verify your name, email address and phone number.Thanks you for <verifying/providing> your phone number. If our call gets disconnected, I will contact you on that number within 60 seconds."},
 	{"name":"IVR", "text":"<Mr/Ms customer's last name> Due to technical difficulties, the system was not able to capture all the information that you might have already provided earlier. I apologize for this inconvenience. May I please have your product's serial number or case #  again to pull up your information?"},
 	{"name":"Survey Supported", "text":"Once I close this case, you will receive a survey.  Please rate the service and support I had provided you today"},
